@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/i-promise.min.js",
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp mocha"
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +15,8 @@
     "gulp-jshint": "^2.0.4",
     "gulp-mocha": "^3.0.1",
     "gulp-release-it": "^1.1.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^2.0.0",
     "gulp-util": "^3.0.8",
     "jshint": "^2.9.4",
     "jshint-stylish": "^2.2.1"

@@ -1,15 +1,6 @@
-var chai = require('chai');
-var spies = require('chai-spies');
-var expect = chai.expect;
-var assert = chai.assert;
-var should = chai.should;
 var IPromise = require('./../src/i-promise.js');
 
-chai.use(spies);
-
-
 describe('IPromise #finally', function() {
-
 
     describe('After execute "then"', function(){
         it('should execute finally', function(done){
