@@ -1,5 +1,7 @@
 !function(){
 
+    "use strict";
+
     /**
      * Class for use promise
      * @author Ivanildo de Castro
@@ -137,7 +139,7 @@
                 index = i;
                 break;
             }
-        };
+        }
 
         if(result instanceof IPromise){
             list.splice(0, index + 1);
@@ -210,4 +212,4 @@
     }else{
         window.IPromise = IPromise;
     }
-}();
+}();//jshint ignore:line
