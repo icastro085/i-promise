@@ -17,15 +17,19 @@ global.should = chai.should;
 
 
 gulp.task('default', [
+    'build'
+]);
+
+gulp.task('build', [
     'jshint',
-    'mocha'
+    'mocha',
+    'uglify'
 ]);
 
 gulp.task('watch', function() {
     gulp.watch(['test/**/*.js'], ['mocha']);
     gulp.watch(['src/**/*.js'], ['jshint']);
 });
-
 
 gulp.task('mocha', function() {
 
