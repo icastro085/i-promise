@@ -5,6 +5,8 @@ var fs = require('fs');
 var jshint = require('gulp-jshint');
 var uglify = require('gulp-uglify');
 var rename = require("gulp-rename");
+var concat = require('gulp-concat-util');
+var sequence = require('gulp-sequence');
 
 require('gulp-release-it')(gulp);
 
@@ -20,11 +22,19 @@ gulp.task('default', [
     'build'
 ]);
 
-gulp.task('build', [
-    'jshint',
-    'mocha',
+gulp.task('build', sequence(
+    [
+        'jshint',
+        'mocha',
+    ],
+    'concat',
+    'delay',
     'uglify'
-]);
+));
+
+gulp.task('delay', function (callback) {
+    setTimeout(callback, 100);
+})
 
 gulp.task('watch', function() {
     gulp.watch(['test/**/*.js'], ['mocha']);
@@ -43,9 +53,9 @@ gulp.task('mocha', function() {
 });
 
 gulp.task('jshint', function() {
-  return gulp.src(['src/**/*.js'])
-    .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish', {beep: true}));
+    return gulp.src(['src/**/*.js'])
+        .pipe(jshint())
+        .pipe(jshint.reporter('jshint-stylish'));
 });
 
 gulp.task('uglify', function() {
@@ -54,10 +64,22 @@ gulp.task('uglify', function() {
         preserveComments: 'license'
     };
 
-    return gulp.src(['src/**/*.js'])
-      .pipe(uglify(options))
-      .pipe(rename(function(path){
+    return gulp.src(['dist/i-promise.js'])
+        .pipe(uglify(options))
+        .pipe(rename(function(path){
             path.basename += '.min';
-      }))
-      .pipe(gulp.dest('dist'));
+        }))
+        .pipe(gulp.dest('dist'));
 });
+
+gulp.task('concat', function() {
+    gulp.src(['src/**/*.js'])
+        .pipe(concat('i-promise.js'))
+        .pipe(concat.header(readLicense() + '!function(){\n'))
+        .pipe(concat.footer('}();'))
+        .pipe(gulp.dest('dist'));
+});
+
+function readLicense(){
+    return '/**\n\n' + fs.readFileSync('LICENSE', 'utf8') + '\n*/\n';
+}

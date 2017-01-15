@@ -20,9 +20,7 @@
     "gulp-sequence": "^0.4.6",
     "gulp-uglify": "^2.0.0",
     "gulp-util": "^3.0.8",
-    "gulp-wait": "0.0.2",
     "jshint": "^2.9.4",
-    "jshint-stylish": "^2.2.1",
-    "run-sequence": "^1.2.2"
+    "jshint-stylish": "^2.2.1"
   }
 }
