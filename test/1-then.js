@@ -1,8 +1,11 @@
+"use strict";
+
 var IPromise = require('./../src/i-promise.js');
 
 describe('IPromise #then', function() {
 
     describe('When I create a new promise', function(){
+
         it('and resolve with value 1', function(done){
 
             var p = new IPromise(function(resolve){

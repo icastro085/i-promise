@@ -1,3 +1,5 @@
+"use strict";
+
 var IPromise = require('./../src/i-promise.js');
 
 describe('IPromise #deferred', function() {
@@ -16,7 +18,7 @@ describe('IPromise #deferred', function() {
                 expect(value).to.equal(4);
             });
 
-            deferred.resolve(2)
+            deferred.resolve(2);
         });
 
     });

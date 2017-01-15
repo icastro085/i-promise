@@ -1,3 +1,5 @@
+"use strict";
+
 var IPromise = require('./../src/i-promise.js');
 
 describe('IPromise #fail', function() {

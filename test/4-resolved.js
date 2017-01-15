@@ -1,3 +1,5 @@
+"use strict";
+
 var IPromise = require('./../src/i-promise.js');
 
 describe('IPromise #resolved', function() {
@@ -19,7 +21,7 @@ describe('IPromise #resolved', function() {
 
         it('should execute "fail" function', function(done){
             IPromise.resolved(1)
-                .then(function(value){
+                .then(function(){
                     throw('error fail');
                 })
                 .fail(function(){

@@ -1,3 +1,5 @@
+"use strict";
+
 var IPromise = require('./../src/i-promise.js');
 
 describe('IPromise #finally', function() {
@@ -24,7 +26,7 @@ describe('IPromise #finally', function() {
 
             p.then(function(){
                 throw('error fail');
-            }).fail(function(error){
+            }).fail(function(){
                 assert.isOk(true);
             }).finally(done);
 
