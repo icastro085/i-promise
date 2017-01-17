@@ -2,7 +2,7 @@
   "name": "i-promise",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/i-promise.min.js",
+  "main": "dist/i-promise.js",
   "scripts": {
     "test": "gulp mocha"
   },
@@ -10,7 +10,6 @@
   "license": "MIT",
   "devDependencies": {
     "chai": "^3.5.0",
-    "chai-spies": "^0.7.1",
     "gulp": "^3.9.1",
     "gulp-concat-util": "^0.5.5",
     "gulp-jshint": "^2.0.4",
