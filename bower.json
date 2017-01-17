@@ -1,0 +1,10 @@
+{
+  "name": "i-promise",
+  "main": "dist/i-promise.js",
+  "license": "MIT",
+  "ignore": [
+    "package.json"
+  ],
+  "keywords": [
+  ]
+}
