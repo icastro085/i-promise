@@ -1,10 +1,17 @@
 {
   "name": "i-promise",
-  "main": "dist/i-promise.js",
-  "license": "MIT",
-  "ignore": [
-    "package.json"
+  "description": "",
+  "main": "dist/i-promise.min.js",
+  "authors": [
+    "Ivanildo de Castro"
   ],
-  "keywords": [
+  "license": "MIT",
+  "homepage": "https://github.com/icastro085/i-promise",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
   ]
 }
