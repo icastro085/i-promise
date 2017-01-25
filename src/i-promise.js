@@ -69,7 +69,8 @@ IPromise.prototype.execute = function(callback, immediately){
 
     if(immediately){
         callback(
-            this.resolve.bind(this)
+            this.resolve.bind(this, 'resolve'),
+            this.resolve.bind(this, 'reject')
         );
     }else{
 
@@ -80,7 +81,8 @@ IPromise.prototype.execute = function(callback, immediately){
         this.wasExecuted = setTimeout(
             callback.bind(
                 callback,
-                this.resolve.bind(this)
+                this.resolve.bind(this, 'resolve'),
+                this.resolve.bind(this, 'reject')
             ),
             0
         );
@@ -100,8 +102,12 @@ IPromise.prototype.done = function(){
  * @param {Mixed} result
  * @return {Void}
  */
-IPromise.prototype.resolve = function(result){
+IPromise.prototype.resolve = function(type, result){
     try{
+        this.thenArray = this.thenArray.map(function(item){
+            return item[type];
+        });
+
         var ipromise = this.forEachCallback(this.thenArray, result);
         if(ipromise){
             this.concatenateCallbacks(ipromise);
@@ -180,8 +186,11 @@ IPromise.prototype.concatenateLists = function(list1, list2){
  * @param {Function} callback
  * @return {IPromise}
  */
-IPromise.prototype.then = function(callback){
-    this.thenArray.push(callback);
+IPromise.prototype.then = function(resolve, reject){
+    this.thenArray.push({
+        resolve: resolve,
+        reject: reject
+    });
     return this;
 };
 
