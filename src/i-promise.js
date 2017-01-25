@@ -68,10 +68,7 @@ IPromise.prototype.execute = function(callback, immediately){
     this.wasExecuted = null;
 
     if(immediately){
-        callback(
-            this.resolve.bind(this, 'resolve'),
-            this.resolve.bind(this, 'reject')
-        );
+        this.applyResolvedCallbacks(callback)();
     }else{
 
         this.thenArray = [];
@@ -79,14 +76,18 @@ IPromise.prototype.execute = function(callback, immediately){
         this.finallyArray = [];
 
         this.wasExecuted = setTimeout(
-            callback.bind(
-                callback,
-                this.resolve.bind(this, 'resolve'),
-                this.resolve.bind(this, 'reject')
-            ),
+            this.applyResolvedCallbacks(callback),
             0
         );
     }
+};
+
+IPromise.prototype.applyResolvedCallbacks = function(callback){
+    return callback.bind(
+        null,
+        this.resolve.bind(this, 'resolve'),
+        this.resolve.bind(this, 'reject')
+    );
 };
 
 /**
