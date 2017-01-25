@@ -28,13 +28,8 @@ gulp.task('build', sequence(
         'mocha',
     ],
     'concat',
-    'delay',
     'uglify'
 ));
-
-gulp.task('delay', function (callback) {
-    setTimeout(callback, 100);
-})
 
 gulp.task('watch', function() {
     gulp.watch(['test/**/*.js'], ['mocha']);
@@ -73,7 +68,7 @@ gulp.task('uglify', function() {
 });
 
 gulp.task('concat', function() {
-    gulp.src(['src/**/*.js'])
+    return gulp.src(['src/**/*.js'])
         .pipe(concat('i-promise.js'))
         .pipe(concat.header(readLicense() + '!function(){\n'))
         .pipe(concat.footer('}();'))
